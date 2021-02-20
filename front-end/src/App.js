@@ -1,12 +1,15 @@
 import InputForm from './components/InputForm'; 
+import './App.css';
+import firebase from "firebase";
 
 const App = () => {
+  const firebaseApp = firebase.apps[0];
   return (
-    <div>
+    <div className="Wrapper">
       
+      <h1 className="WelcomeBanner">Welcome to Homework Help!</h1>
       <InputForm/>
-      <h1>Test</h1>
-      <h1>Test again again</h1>
+      
     </div>
   );
 }
