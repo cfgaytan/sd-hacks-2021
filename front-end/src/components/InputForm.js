@@ -8,6 +8,8 @@ const InputForm = () => {
 
     const [picture, setPicture] = React.useState("");
     const [pictureSubmitted, setPictureSubmitted] = React.useState(false);
+    const [feedback, setFeedback] = React.useState("");
+    const [showFeedback, setShowFeedback] = React.useState(false);
     const storage = firebase.storage();
 
 
@@ -53,8 +55,13 @@ const InputForm = () => {
                         // }).then(response => console.log(opts));
                         
                           // axios({   method: 'post',   url: 'http://localhost:5000/dummy',   data: {     url1: 'pictureTest' } });
-                          const test = axios.post("http://localhost:5000/machine_learning", { "url1": url });
-                          console.log(test);
+                          axios.post("http://localhost:5000/machine_learning", { "url1": url })
+                          .then(resp => {
+                            setFeedback(resp.data);
+                            setShowFeedback(true);
+                            console.log(feedback);
+                          });
+                          //console.log(test.response);
                       } catch (error) {
                           console.log(error.message);
                           console.log("in error")
@@ -76,12 +83,14 @@ const InputForm = () => {
                     <label className="UploadNewPhotoButton" for="photo-upload"> Upload Homework 
                         <input className="FileChooser" type='file' id='photo-upload' onChange={handleFileUpload} accept='image/*' />
                     </label>
-                    <div>
-                        
-                    <FileBase type="file" multiple={false} onDone={({ base64 }) => console.log(base64)} />
+                    <div>  
+                      <FileBase type="file" multiple={false} onDone={({ base64 }) => console.log(base64)} />
                     </div>
 
                     {/* {pictureSubmitted && <button className="ConfirmSubmit" onClick={confirmPhotoUpload}>Submit</button>} */}
+                </div>
+                <div className="Feedback">
+                  {showFeedback && <h2 className="FeedbackText">{feedback}</h2>}
                 </div>
             </form>
         </div>

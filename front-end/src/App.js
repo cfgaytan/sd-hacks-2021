@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div className="Wrapper">
       
-      <h1 className="WelcomeBanner">Welcome to Homework Help!</h1>
+      <h1 className="WelcomeBanner">Welcome to Easy Learn!</h1>
       <InputForm/>
       
     </div>

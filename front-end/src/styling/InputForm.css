@@ -66,3 +66,7 @@ input[type='file'] {
 .ConfirmSubmit:visited {
   background-color: skyblue;
 }
+
+.Feedback {
+  margin-left: 10%;
+}
