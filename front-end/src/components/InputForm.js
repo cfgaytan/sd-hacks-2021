@@ -39,20 +39,32 @@ const InputForm = () => {
                     .getDownloadURL()
                     .then(url => {
                       setPicture({ url });
+                      // console.log("url is " + url);
+                      const opts = { "url1": url }
+                      try {
+                        
+                        // fetch('http://localhost:5000/machine_learning', {
+                        //   method: 'post',
+                        //   mode: 'no-cors',
+                        //   headers: {
+                        //     "Content-Type": "application/json"
+                        //   },
+                        //   body: opts
+                        // }).then(response => console.log(opts));
+                        
+                          // axios({   method: 'post',   url: 'http://localhost:5000/dummy',   data: {     url1: 'pictureTest' } });
+                          const test = axios.post("http://localhost:5000/machine_learning", { "url1": url });
+                          console.log(test);
+                      } catch (error) {
+                          console.log(error.message);
+                          console.log("in error")
+                      }
                     });
                 }
               );
         }
-        console.log(picture);
         
-        try {
-            console.log("test results ");
-            const test = await axios.post("http://localhost:5000/machine_learning", {'url': picture});
-            console.log(test);
-        } catch (error) {
-            console.log(error.message);
-            console.log("in error")
-        }
+        
     }
 
     
